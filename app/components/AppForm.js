@@ -1,12 +1,14 @@
 import React from "react";
 import { Formik } from "formik";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+
+import colors from "../config/colors";
 
 export default function AppForm({
   children,
-  icon,
+  formTitle,
   initialErrors,
   initialValues,
   onSubmit,
@@ -22,13 +24,16 @@ export default function AppForm({
         onSubmit={onSubmit}
       >
         <React.Fragment>
-          {icon && (
-            <MaterialCommunityIcons
-              name={icon}
-              color="gray"
-              size={150}
-              style={styles.icon}
-            />
+          {formTitle && (
+            <View>
+              <Text style={styles.formTitle}>{formTitle}</Text>
+              <LinearGradient
+                colors={[colors.primary, colors.secondary]}
+                style={styles.gradient}
+                start={[0, 1]}
+                end={[1, 0]}
+              />
+            </View>
           )}
           {children}
         </React.Fragment>
@@ -38,6 +43,24 @@ export default function AppForm({
 }
 
 const styles = StyleSheet.create({
-  formContainer: { margin: 10 },
-  icon: { alignSelf: "center" },
+  formContainer: {
+    margin: 10,
+  },
+  formTitle: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 40,
+    fontWeight: "bold",
+  },
+  gradient: {
+    alignSelf: "center",
+    borderRadius: 5,
+    height: 10,
+    marginTop: 20,
+    marginBottom: 50,
+    width: "60%",
+  },
+  icon: {
+    alignSelf: "center",
+  },
 });

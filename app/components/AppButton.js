@@ -2,12 +2,14 @@ import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import colors from "../config/colors";
+
 function AppButton({ icon, title, onPress, style }) {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
       {icon && (
         <MaterialCommunityIcons
-          color="gray"
+          color={colors.primary}
           name={icon}
           size={15}
           style={styles.icon}
@@ -20,19 +22,19 @@ function AppButton({ icon, title, onPress, style }) {
 
 const styles = StyleSheet.create({
   button: {
-    borderWidth: 1,
-    padding: 5,
-    borderColor: "gray",
-    borderRadius: 5,
-    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: colors.dark,
+    borderRadius: 5,
     flexDirection: "row",
+    justifyContent: "center",
+    padding: 5,
+    height: 40,
     width: "100%",
   },
   icon: {
     marginRight: 5,
   },
-  text: { color: "black" },
+  text: { color: colors.white },
 });
 
 export default AppButton;

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import colors from "../config/colors";
 
 function NavigationLink({ style, text, onPress }) {
   return (
@@ -21,6 +22,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   text: {
-    color: "blue",
+    color: colors.primary,
   },
 });

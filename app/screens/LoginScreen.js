@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 
 import * as yup from "yup";
 
-import AppButton from "../components/AppButton";
 import AppForm from "../components/AppForm";
+import AppFormSubmit from "../components/AppFormSubmit";
 import AppTextInput from "../components/AppTextInput";
 import NavigationLink from "../components/NavigationLink";
 import Screen from "../components/Screen";
@@ -16,9 +16,9 @@ const validationSchema = yup.object().shape({
 
 function LoginScreen({ navigation }) {
   return (
-    <Screen>
+    <Screen style={styles.container}>
       <AppForm
-        icon="account-key"
+        formTitle="Login"
         initialValues={{ email: "", password: "" }}
         initialErrors={{ email: "", password: "" }}
         validationSchema={validationSchema}
@@ -32,15 +32,15 @@ function LoginScreen({ navigation }) {
           style={styles.input}
         />
         <AppTextInput
-          icon="form-textbox-password"
+          icon="lock"
           name="password"
           secureTextEntry={true}
           placeholder="Password"
           style={styles.input}
         />
-        <AppButton title="Login" icon="login" />
+        <AppFormSubmit title="Login" icon="login" style={styles.input} />
         <NavigationLink
-          text="Not a user? Register now!"
+          text="SIGN UP NOW!"
           onPress={() => navigation.navigate("Register")}
         />
       </AppForm>
@@ -51,7 +51,12 @@ function LoginScreen({ navigation }) {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+  },
   input: {
-    marginBottom: 5,
+    marginBottom: 15,
+    width: "80%",
+    alignSelf: "center",
   },
 });

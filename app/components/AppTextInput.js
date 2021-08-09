@@ -5,6 +5,7 @@ import { useFormikContext } from "formik";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppError from "./AppError";
+import colors from "../config/colors";
 
 function AppTextInput({ icon, name, style, ...otherProps }) {
   const { errors, setValues, values, touched, setFieldTouched } =
@@ -19,7 +20,7 @@ function AppTextInput({ icon, name, style, ...otherProps }) {
       <View style={[styles.inputContainer, style]}>
         {icon && (
           <MaterialCommunityIcons
-            color="gray"
+            color={colors.primary}
             name={icon}
             size={15}
             style={styles.icon}
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   inputContainer: {
-    borderColor: "gray",
+    borderColor: colors.light,
+    borderBottomWidth: 4,
     borderRadius: 5,
-    borderWidth: 1,
     flexDirection: "row",
     width: "100%",
   },

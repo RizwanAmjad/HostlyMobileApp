@@ -14,7 +14,7 @@ export default Screen;
 
 const styles = StyleSheet.create({
   view: {
-    marginTop: StatusBar.currentHeight,
+    paddingTop: StatusBar.currentHeight,
     flex: 1,
   },
 });
