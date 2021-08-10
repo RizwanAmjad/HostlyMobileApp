@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
 
 import * as yup from "yup";
+import jwtDecode from "jwt-decode";
 
 import AppForm from "../components/AppForm";
 import AppFormSubmit from "../components/AppFormSubmit";
@@ -9,12 +10,26 @@ import AppTextInput from "../components/AppTextInput";
 import NavigationLink from "../components/NavigationLink";
 import Screen from "../components/Screen";
 
+import AuthContext from "../auth/context";
+
+import users from "../api/users";
+
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label("Email"),
   password: yup.string().required().min(8).label("Password"),
 });
 
 function LoginScreen({ navigation }) {
+  const { setIsGuest, setUser } = useContext(AuthContext);
+
+  const handleSubmit = async ({ email, password }) => {
+    const response = await users.login(email, password);
+
+    if (!response.problem) {
+      setUser(jwtDecode(response.data));
+    }
+  };
+
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -22,7 +37,7 @@ function LoginScreen({ navigation }) {
         initialValues={{ email: "", password: "" }}
         initialErrors={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
       >
         <AppTextInput
           icon="email"
@@ -42,6 +57,10 @@ function LoginScreen({ navigation }) {
         <NavigationLink
           text="SIGN UP NOW!"
           onPress={() => navigation.navigate("Register")}
+        />
+        <NavigationLink
+          text="Explore as a Guest"
+          onPress={() => setIsGuest(true)}
         />
       </AppForm>
     </Screen>

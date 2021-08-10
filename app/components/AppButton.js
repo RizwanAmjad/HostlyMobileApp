@@ -4,12 +4,12 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-function AppButton({ icon, title, onPress, style }) {
+function AppButton({ icon, iconColor, title, onPress, style }) {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
       {icon && (
         <MaterialCommunityIcons
-          color={colors.primary}
+          color={iconColor ? iconColor : colors.primary}
           name={icon}
           size={15}
           style={styles.icon}

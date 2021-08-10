@@ -4,6 +4,6 @@ export default {
   light: "#ffffffff",
   dark: "blue",
   white: "#ffffffff",
-  black: "",
+  black: "#212121",
   background: "#666",
 };
