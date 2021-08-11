@@ -1,8 +1,11 @@
 import React from "react";
 import { ImageBackground, Text, StyleSheet } from "react-native";
 
+import AppButton from "../components/AppButton";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+
+import useAuth from "../auth/useAuth";
 
 const user = {
   name: "Rizwan Amjad",
@@ -12,6 +15,8 @@ const user = {
 };
 
 function AccountScreen(props) {
+  const auth = useAuth();
+
   return (
     <ImageBackground
       blurRadius={10}
@@ -23,6 +28,7 @@ function AccountScreen(props) {
         <Text style={styles.text}>Email: {user.email}</Text>
         <Text style={styles.text}>Phone No: {user.phone_number}</Text>
         <Text style={styles.text}>Date Created: {user.date_created}</Text>
+        <AppButton title="Logout" onPress={() => auth.logout()} />
       </Screen>
     </ImageBackground>
   );

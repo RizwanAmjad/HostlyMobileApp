@@ -43,7 +43,7 @@ function RegisterScreen({ navigation }) {
       phone_number
     );
 
-    console.log(response);
+    // console.log(response);
 
     if (!response.problem) {
       alert("You have been registered Successfully!");

@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 
 import * as yup from "yup";
-import jwtDecode from "jwt-decode";
 
 import AppForm from "../components/AppForm";
 import AppFormSubmit from "../components/AppFormSubmit";
@@ -10,7 +9,7 @@ import AppTextInput from "../components/AppTextInput";
 import NavigationLink from "../components/NavigationLink";
 import Screen from "../components/Screen";
 
-import AuthContext from "../auth/context";
+import useAuth from "../auth/useAuth";
 
 import users from "../api/users";
 
@@ -20,13 +19,11 @@ const validationSchema = yup.object().shape({
 });
 
 function LoginScreen({ navigation }) {
-  const { setIsGuest, setUser } = useContext(AuthContext);
-
+  const auth = useAuth();
   const handleSubmit = async ({ email, password }) => {
     const response = await users.login(email, password);
-
     if (!response.problem) {
-      setUser(jwtDecode(response.data));
+      auth.login(response.data);
     }
   };
 
