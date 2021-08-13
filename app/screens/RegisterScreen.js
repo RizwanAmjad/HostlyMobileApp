@@ -102,7 +102,7 @@ function RegisterScreen({ navigation }) {
           style={styles.input}
         />
         <AppTextInput
-          icon="lock"
+          icon="cellphone-basic"
           keyboardType="phone-pad"
           name="phone_number"
           placeholder="Phone Number"

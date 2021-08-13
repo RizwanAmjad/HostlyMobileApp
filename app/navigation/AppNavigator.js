@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import FeedScreen from "../screens/FeedScreen";
 import AccountScreen from "../screens/AccountScreen";
+import CreatePostScreen from "../screens/CreatePostScreen";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
@@ -28,9 +30,26 @@ export default AppNavigator = () => (
         ),
       }}
     />
-    {/* <TabNavigator.Screen name="Create Ad"/> */}
     <TabNavigator.Screen
-      name="Account Details"
+      component={CreatePostScreen}
+      name="Create Post"
+      options={{
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons
+            color={color}
+            name="plus-circle-outline"
+            size={60}
+            style={{
+              backgroundColor: colors.black,
+              borderRadius: 60 / 2,
+              paddingBottom: 20,
+            }}
+          />
+        ),
+      }}
+    />
+    <TabNavigator.Screen
+      name="Account"
       component={AccountScreen}
       options={{
         tabBarIcon: ({ size, color }) => (

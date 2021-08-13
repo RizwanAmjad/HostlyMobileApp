@@ -6,6 +6,10 @@ const getHostels = () => {
   return apiClient.get(endpoint);
 };
 
+const postHostelAd = (formData) => {
+  return apiClient.post(endpoint, formData);
+};
+
 export default {
   getHostels,
 };
