@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 
 import * as yup from "yup";
@@ -9,8 +9,9 @@ import AppImagePickerList from "../components/AppImagePickerList";
 import AppPicker from "../components/AppPicker";
 import AppTextInput from "../components/AppTextInput";
 import Screen from "../components/Screen";
+
 import citiesAPI from "../api/cities";
-import { useState } from "react";
+import hostelsApi from "../api/hostels";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required().min(5).label("Title"),
@@ -35,14 +36,13 @@ function CreatePostScreen(props) {
   const getAllCities = async () => {
     const { data: cities } = await citiesAPI.getCities();
     setCities(cities);
-    console.log(cities);
   };
   useEffect(() => {
     getAllCities();
   }, []);
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    const result = await hostelsApi.postHostelAd(values);
   };
   return (
     <Screen>
